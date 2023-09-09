@@ -11,3 +11,14 @@ const trpc = createTRPCProxyClient<AppRouter>({
     }),
   ],
 });
+
+async function main() {
+    let response = await trpc.createTodo.mutate({
+        title: "Go to gym",
+        description: "at 7 pm sharp",
+    });
+
+    console.log(response);
+}
+
+main();

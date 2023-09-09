@@ -1,5 +1,6 @@
 import { publicProcedure, router } from './trpc';
 import z from 'zod';
+import { createHTTPServer } from '@trpc/server/adapters/standalone';
  
 const inputType = z.object({
     title: z.string(),
@@ -24,3 +25,9 @@ const appRouter = router({
 // Export type router type signature,
 // NOT the router itself.
 export type AppRouter = typeof appRouter;
+
+const server = createHTTPServer({
+    router: appRouter,
+});
+   
+server.listen(3000);
